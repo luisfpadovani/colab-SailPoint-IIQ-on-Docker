@@ -110,7 +110,7 @@ These exclusions affect subsequent builds/imports. They do not delete applicatio
 
 ## Validation, samples and dependency updates
 
-Run `python3 scripts/validate.py` for syntax/template/security regression checks, and `python3 scripts/integration.py` for isolated LDAP/SQL runtime tests (Docker required; downloads images, creates disposable containers, and accepts the Microsoft EULA only when explicitly provided by the operator). Full IIQ acceptance still requires the licensed artifacts and the checklist in [the security report](relatorio-revisao-10-pontos.md).
+Run `python3 scripts/validate.py` for syntax/template/security regression checks, and `python3 scripts/integration.py` for isolated LDAP/SQL runtime tests (Docker required; downloads images, creates disposable containers, and accepts the Microsoft EULA only when explicitly provided by the operator). Full IIQ acceptance still requires the licensed artifacts and the [functional acceptance checklist](#functional-acceptance).
 
 The PR workflow scans the resulting source tree with Gitleaks and the repository checks. It deliberately does not rewrite or certify Git history: old commits contain the previously published sample credentials. Treat those credentials as compromised and rotate any real reuse. Review repository history and any required artifact removal separately before publication.
 
@@ -134,8 +134,21 @@ On an existing IIQ volume, rebuilding connector XML does not replace persisted A
 docker compose exec server_web_iiq webapps/identityiq/WEB-INF/bin/iiq console -c "import /usr/local/tomcat/webapps/identityiq/WEB-INF/config/custom/Application/Application-Jdbc.xml"
 ```
 
-Third-party notices and licensing requirements are in [NOTICE](../NOTICE). See the [ten-point security review report](relatorio-revisao-10-pontos.md) for local results and remaining functional acceptance.
+Third-party notices and licensing requirements are in [NOTICE](../NOTICE).
 
 The SQL integration tests require an explicit `ACCEPT_EULA=Y` in the invoking environment. The workflow deliberately runs LDAP tests without accepting Microsoft's terms on behalf of contributors.
 
 Dependabot covers Dockerfiles, Compose images, GitHub Actions and Python development dependencies. The weekly JDBC updater verifies the upstream artifact checksum and proposes a reviewed PR. Enable the repository setting **Allow GitHub Actions to create and approve pull requests** for PR creation; licensed IIQ acceptance is still needed before merging a driver upgrade.
+
+
+## Functional acceptance
+
+After the automated checks pass, validate the complete workflows in your licensed environment:
+
+- Change the built-in IIQ administrator password at first login and confirm the previous password fails. This is a manual step, separate from SQL/LDAP service credentials.
+- Aggregate HR, JDBC accounts/groups and LDAP accounts/groups; verify correlation, manager relationships and lifecycle status.
+- Provision account creation, updates, enable/disable, deletion, group creation and membership changes. Include LDAP names containing special DN characters.
+- Assign new passwords to sample accounts and verify authentication and subsequent password changes. Random bootstrap passwords are discarded.
+- Confirm one user's membership removal does not affect other users, and duplicate inserts leave no partial account or membership records.
+- Test replacement/renewal of lab certificates, client trust and service recovery after restart, preserving persistent data.
+- Re-run connector and TLS checks after changes to IIQ, its JDBC driver or certificate configuration.

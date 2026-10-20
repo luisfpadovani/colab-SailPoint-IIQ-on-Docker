@@ -162,7 +162,7 @@ To include disposable SQL tests, explicitly set `ACCEPT_EULA=Y` in the invoking 
 
 The PR pipeline checks the source tree and new commit history for product archives, binaries and local artifacts, then runs configuration checks, unit tests, LDAP integration and Gitleaks. Dependabot covers container images, Actions and Python dependencies. A weekly workflow proposes driver updates after checking the downloaded JAR's SHA-256. The current pin is downloaded from [Maven Central](https://repo.maven.apache.org/maven2/com/microsoft/sqlserver/mssql-jdbc/13.6.0.jre11/), SHA-256 `4c566e4022c4dcf1489aeb639fe49a0f6ffae3d796fdc2f56b5b8882d4c3bf5a`; release notes: [Microsoft JDBC release notes](https://github.com/microsoft/mssql-jdbc/releases/tag/v13.6.0).
 
-See the [ten-point security review report](docs/relatorio-revisao-10-pontos.md) for requested changes, implementation evidence and remaining acceptance work. A source-tree scan does not certify Git history; review historical secrets and rotate any real reuse before publication.
+Complete the [functional acceptance checklist](docs/operations.md#functional-acceptance) before considering the lab ready for your use. A source-tree scan does not certify Git history; review historical secrets and rotate any real reuse before publication.
 
 ## Licensing
 
@@ -170,6 +170,6 @@ Project source is distributed under [LICENSE.txt](LICENSE.txt). Third-party comp
 
 ## Contributing and support
 
-Only project source, integration configuration, synthetic fixtures, tests and documentation belong in commits. Product ZIP/JAR/WAR files, compiled code, licensed SQL scripts, full product UI exports, `.env`, keys and local logs must remain outside Git. Run the artifact audit above before publishing. See the [publication audit](docs/auditoria-publicacao.md) for the clean branch and scope.
+Only project source, integration configuration, synthetic fixtures, tests and documentation belong in commits. Product ZIP/JAR/WAR files, compiled code, licensed SQL scripts, full product UI exports, `.env`, keys and local logs must remain outside Git. Run the artifact audit above before publishing.
 
 Use [GitHub issues](https://github.com/sailpoint-oss/colab-SailPoint-IIQ-on-Docker/issues) for reproducible bugs and feature requests, and submit changes through pull requests. Include relevant validation and keep credentials, licensed artifacts and local environment files out of contributions. Community examples require validation for your own licensed environment and are not a production deployment blueprint.

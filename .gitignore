@@ -51,3 +51,7 @@ venv/
 **/upgrade_identityiq*.sql*
 tomcat/file_install/ssb/web/
 tomcat/file_config/UI/UIConfig-Uiconfig.xml
+
+# Internal review reports belong in the ignored local workspace only.
+docs/auditoria-*.md
+docs/relatorio-*.md
