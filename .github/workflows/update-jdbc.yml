@@ -1,0 +1,34 @@
+name: Update Microsoft JDBC driver
+on:
+  schedule:
+    - cron: '23 9 * * 1'
+  workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
+concurrency:
+  group: update-jdbc
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Verify upstream artifact and update version with checksum
+        run: python3 scripts/update_jdbc.py --update
+      - name: Validate updated configuration
+        run: python3 scripts/validate.py
+      - name: Propose reviewed dependency update
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8
+        with:
+          branch: dependencies/mssql-jdbc
+          delete-branch: true
+          commit-message: 'build: update Microsoft JDBC driver and verified checksum'
+          title: 'build: update Microsoft JDBC driver and verified checksum'
+          body: |
+            Updates the stable JRE 11 Microsoft JDBC artifact and SHA-256 together.
+            The updater downloads the artifact from Maven Central and verifies its published checksum before changing files.
+            Configuration checks run before opening this PR. Licensed IIQ connector acceptance must be performed before merging.
+          add-paths: |
+            tomcat/Dockerfile
+            README.md

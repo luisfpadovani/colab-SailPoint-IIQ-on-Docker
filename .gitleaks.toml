@@ -1,0 +1,19 @@
+title = "IIQ lab secret scanning"
+[extend]
+useDefault = true
+
+[[rules]]
+id = "iiq-encoded-secret"
+description = "IdentityIQ encoded credentials must be supplied locally"
+regex = '''[0-9]+:ACP:[A-Za-z0-9+/=]{8,}'''
+
+[[rules]]
+id = "retired-demo-password"
+description = "Previously published demo credentials must not return"
+regex = '''(?:Change@123|test1234)'''
+[[rules.allowlists]]
+paths = ['''^\.gitleaks\.toml$''']
+
+[allowlist]
+description = "Generated Python bytecode may contain folded test fixtures"
+paths = ['''(?:^|/)__pycache__/''']

@@ -1,0 +1,2 @@
+# Pin the fake-data provider to keep seeded names stable across regenerations.
+Faker==40.43.0

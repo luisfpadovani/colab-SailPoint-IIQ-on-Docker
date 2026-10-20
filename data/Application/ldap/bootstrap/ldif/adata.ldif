@@ -1,0 +1,71 @@
+dn: ou=Groups,dc=corp1
+changetype: add
+objectclass: organizationalUnit
+ou: Groups
+
+dn: ou=Users,dc=corp1
+changetype: add
+objectclass: organizationalUnit
+ou: Users
+
+dn: cn=00000000,ou=Users,dc=corp1
+changetype: add
+objectclass: inetOrgPerson
+cn: 00000000
+givenname: Kim
+sn: Mcgee
+displayname: Kim Mcgee
+mail: employee00000000@example.com
+userpassword: {SSHA}+6e8LHIBmtTm0YNa7O28QoQdqjv2ChHx4OL0SPZZfh74KbmJ
+objectclass: personnel
+employeeID: 00000000
+
+dn: cn=00000001,ou=Users,dc=corp1
+changetype: add
+objectclass: inetOrgPerson
+cn: 00000001
+givenname: Lisa
+sn: Lewis
+displayname: Lisa Lewis
+mail: employee00000001@example.com
+userpassword: {SSHA}DFyrx3sa7pqCswrngEvCaikw54BlY2WOFle254HrDOWDvCec
+objectclass: personnel
+employeeID: 00000001
+
+dn: cn=00000003,ou=Users,dc=corp1
+changetype: add
+objectclass: inetOrgPerson
+cn: 00000003
+givenname: Tyler
+sn: Hernandez
+displayname: Tyler Hernandez
+mail: employee00000003@example.com
+userpassword: {SSHA}mdPkb/HsSg7Yzjun6YSvt084D9wG17wvkyuuVA/4GAkKSgMJ
+objectclass: personnel
+employeeID: 00000003
+
+dn: cn=00000004,ou=Users,dc=corp1
+changetype: add
+objectclass: inetOrgPerson
+cn: 00000004
+givenname: Marcus
+sn: Harris
+displayname: Marcus Harris
+mail: employee00000004@example.com
+userpassword: {SSHA}35ptCO6Nh24JSrZFo3hcySoQ3Ex67Tj5qtaaj+VB9ueW3I7o
+objectclass: personnel
+employeeID: 00000004
+
+dn: cn=Admins,ou=Groups,dc=corp1
+changetype: add
+cn: Admins
+objectclass: groupOfUniqueNames
+uniqueMember: cn=00000001,ou=Users,dc=corp1
+uniqueMember: cn=00000000,ou=Users,dc=corp1
+
+dn: cn=Maintaners,ou=Groups,dc=corp1
+changetype: add
+cn: Maintaners
+objectclass: groupOfUniqueNames
+uniqueMember: cn=00000003,ou=Users,dc=corp1
+uniqueMember: cn=00000000,ou=Users,dc=corp1

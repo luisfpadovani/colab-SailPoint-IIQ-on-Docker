@@ -1,0 +1,53 @@
+#Files Leaver/Joiner/Mover LMC Default
+tomcat/file_config/SSF_Features
+tomcat/file_config/SSF_Frameworks
+tomcat/file_config/SSF_Tools
+tomcat/file_config/SSP_Tools
+tomcat/file_config/SSF_Features
+tomcat/file_config/ServiceDefinition
+
+#Files Install Configuration
+tomcat/file_install/ssb.zip
+tomcat/file_install/ssb/base/ga/identityiq-8.5.zip
+tomcat/file_install/ssb/base/patch/identityiq-8.5p1.jar
+
+#Scripts SQLServer
+sqlserver_iiq/scripts/*.sqlserver
+
+# Windows downloaded file metadata
+*:Zone.Identifier
+
+# Local secrets and generated artifacts
+.env
+.env.*
+!.env.example
+.secrets/
+*.jks
+*.p12
+__pycache__/
+
+# Product packages, compiled code, local keys and development environments.
+# Applies to every version, including archives placed outside the documented paths.
+*.zip
+*.jar
+*.war
+*.ear
+*.class
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+*.exe
+*.dll
+*.so
+*.key
+*.pem
+*.crt
+*.keystore
+.venv/
+venv/
+.pytest_cache/
+**/create_identityiq*.sql*
+**/upgrade_identityiq*.sql*
+tomcat/file_install/ssb/web/
+tomcat/file_config/UI/UIConfig-Uiconfig.xml

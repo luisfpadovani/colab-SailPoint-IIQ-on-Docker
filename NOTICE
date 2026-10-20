@@ -1,0 +1,27 @@
+Third-party components and licensing
+
+The project source is covered by LICENSE.txt. This notice is informational and
+is not a replacement for the license texts distributed by each component.
+
+- Apache Tomcat and Apache Ant: Apache License 2.0 (tomcat.apache.org, ant.apache.org).
+- Eclipse Temurin / OpenJDK: GPL v2 with the Classpath Exception (adoptium.net).
+- Microsoft JDBC Driver for SQL Server: MIT license
+  https://github.com/microsoft/mssql-jdbc/blob/main/LICENSE
+  Downloaded at build time from Maven Central; version/checksum in tomcat/Dockerfile.
+- SQL Server: proprietary Microsoft license / EULA. Users must explicitly accept
+  the EULA and select an edition licensed for their intended use. Developer edition
+  is restricted to development/testing, subject to Microsoft's terms.
+- SailPoint IdentityIQ: proprietary SailPoint software. Services Standard Build
+  (SSB): SailPoint tooling obtained through Compass, subject to the terms supplied
+  with that download. Users must obtain authorized copies and satisfy applicable
+  licensing and download terms. Product binaries and SQL scripts are not supplied here.
+  Example XML configuration is intended to be used with a licensed installation;
+  removing the full UIConfig export does not grant redistribution rights to IIQ.
+- OpenLDAP: OpenLDAP Public License (openldap.org/software/release/license.html).
+- OpenSSL: Apache License 2.0 (openssl.org).
+- Debian / Ubuntu packages: multiple licenses; see installed package copyright
+  notices under /usr/share/doc and the base images' metadata.
+- Mailpit: MIT license (github.com/axllent/mailpit).
+- Gitleaks: MIT license (github.com/gitleaks/gitleaks), validation tooling only.
+- Faker: MIT license (https://github.com/joke2k/faker/blob/master/LICENSE.txt),
+  development-only synthetic sample generation; version in requirements-dev.txt.

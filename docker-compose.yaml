@@ -1,0 +1,140 @@
+services:
+  sql_tls_init:
+    build: ./tls
+    read_only: true
+    tmpfs: [/tmp]
+    volumes:
+      - sql_ca:/ca
+      - sql_tls:/out/server
+      - sql_trust:/out/trust
+    mem_limit: 128m
+    cpus: 0.5
+    security_opt: [no-new-privileges:true]
+    network_mode: none
+  server_smtp:
+    image: axllent/mailpit:v1.27.7
+    environment:
+      MP_DATABASE: /data/mailpit.db
+    read_only: true
+    tmpfs: [/tmp]
+    volumes:
+      - mail_data:/data
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:1025:1025"
+      - "${BIND_ADDRESS:-127.0.0.1}:8025:8025"
+    mem_limit: 256m
+    cpus: 0.5
+    security_opt: [no-new-privileges:true]
+    networks: [rede_iiq]
+  server_ldad:
+    build: ./openldap
+    hostname: ldap
+    read_only: true
+    tmpfs: [/tmp, /run]
+    environment:
+      LDAP_ADMIN_PASSWORD: ${LDAP_ADMIN_PASSWORD:?Set LDAP_ADMIN_PASSWORD in .env}
+      LDAP_BASE_DN: ${LDAP_BASE_DN:-dc=corp1}
+      LDAP_ORGANISATION: ${LDAP_ORGANISATION:-Org Corp1}
+    volumes:
+      - ${LDAP_DATA_SCHEMA:-./data/Application/ldap/bootstrap/schema/attributes.schema}:/bootstrap/schema/attributes.schema:ro
+      - ${LDAP_DATA:-./data/Application/ldap/bootstrap/ldif/adata.ldif}:/bootstrap/ldif/adata.ldif:ro
+      - ldap_data:/var/lib/ldap
+      - ldap_config:/etc/ldap/slapd.d
+      - ldap_tls:/etc/ldap/tls
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:636:636"
+    healthcheck:
+      test: [CMD-SHELL, 'LDAPTLS_CACERT=/etc/ldap/tls/ldap.crt ldapsearch -x -H ldaps://ldap:636 -D "cn=admin,$${LDAP_BASE_DN}" -y /run/ldap-admin-password -b "$${LDAP_BASE_DN}" -s base >/dev/null']
+      interval: 10s
+      timeout: 10s
+      retries: 20
+    mem_limit: 512m
+    cpus: 1
+    security_opt: [no-new-privileges:true]
+    networks:
+      rede_iiq:
+        aliases: [ldap]
+  server_db:
+    build: ./sqlserver_iiq
+    hostname: sqlserver
+    read_only: true
+    tmpfs:
+      - /tmp:uid=10001,gid=10001,mode=1770
+      - /home/mssql:uid=10001,gid=10001,mode=0700
+    depends_on:
+      sql_tls_init:
+        condition: service_completed_successfully
+    environment:
+      SSL_CERT_FILE: /run/sql-trust/ca.crt
+      ACCEPT_EULA: ${ACCEPT_EULA:?Review the SQL Server EULA and set ACCEPT_EULA=Y}
+      MSSQL_PID: ${MSSQL_PID:-Developer}
+      MSSQL_MEMORY_LIMIT_MB: ${MSSQL_MEMORY_LIMIT_MB:-2048}
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD:?Set MSSQL_SA_PASSWORD}
+      APP_MOCK_PASSWORD: ${APP_MOCK_PASSWORD:?Set APP_MOCK_PASSWORD}
+      HEALTHCHECK_PASSWORD: ${HEALTHCHECK_PASSWORD:?Set HEALTHCHECK_PASSWORD}
+      IIQ_DB_PASSWORD: ${IIQ_DB_PASSWORD:?Set IIQ_DB_PASSWORD}
+      IIQ_PLUGIN_PASSWORD: ${IIQ_PLUGIN_PASSWORD:?Set IIQ_PLUGIN_PASSWORD}
+      IIQ_AH_PASSWORD: ${IIQ_AH_PASSWORD:?Set IIQ_AH_PASSWORD}
+    volumes:
+      - sql_data:/var/opt/mssql
+      - sql_tls:/run/sql-tls:ro
+      - sql_trust:/run/sql-trust:ro
+    healthcheck:
+      test: [CMD-SHELL, 'test -f /var/opt/mssql/.initialized && SQLCMDPASSWORD="$$HEALTHCHECK_PASSWORD" /opt/mssql-tools18/bin/sqlcmd -N -b -S sqlserver -U healthcheck -d master -Q "SELECT 1" >/dev/null']
+      interval: 10s
+      timeout: 10s
+      retries: 30
+      start_period: 30s
+    mem_limit: 3g
+    cpus: 2
+    security_opt: [no-new-privileges:true]
+    networks:
+      rede_iiq:
+        aliases: [sqlserver]
+  server_web_iiq:
+    hostname: iiq
+    build:
+      context: ./tomcat
+      secrets: [iiq_build_env]
+    environment:
+      JAVA_TOOL_OPTIONS: -Djavax.net.ssl.trustStore=/tmp/iiq-cacerts
+      CATALINA_OPTS: ${CATALINA_OPTS:--Xms256m -Xmx1536m}
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:8080:8080"
+    depends_on:
+      server_db:
+        condition: service_healthy
+      server_ldad:
+        condition: service_healthy
+    volumes:
+      - ${DIRECTORY_TOMCAT_APPLICATION:-./data/Application/file}:/opt/file:ro
+      - ldap_tls:/etc/ldap/tls:ro
+      - sql_trust:/run/sql-trust:ro
+      - iiq_state:/usr/local/tomcat/state
+    read_only: true
+    tmpfs:
+      - /tmp:uid=10001,gid=10001,mode=1770
+      - /usr/local/tomcat/temp:uid=10001,gid=10001
+      - /usr/local/tomcat/work:uid=10001,gid=10001
+      - /usr/local/tomcat/logs:uid=10001,gid=10001
+      - /usr/local/tomcat/conf/Catalina:uid=10001,gid=10001
+    mem_limit: 3g
+    cpus: 2
+    security_opt: [no-new-privileges:true]
+    networks: [rede_iiq]
+secrets:
+  iiq_build_env:
+    file: .env
+volumes:
+  sql_ca:
+  sql_tls:
+  sql_trust:
+  mail_data:
+  sql_data:
+  ldap_data:
+  ldap_config:
+  ldap_tls:
+  iiq_state:
+networks:
+  rede_iiq:
+    driver: bridge

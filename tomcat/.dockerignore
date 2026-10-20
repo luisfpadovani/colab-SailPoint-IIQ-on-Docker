@@ -1,0 +1,4 @@
+**/*.jar
+!file_install/ssb/base/patch/*.jar
+!file_install/ssb/base/efix/*.jar
+.git

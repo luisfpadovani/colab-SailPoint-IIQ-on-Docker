@@ -1,0 +1,102 @@
+employeeID;name;firstname;lastname;email;departmentName;departmentCode;manager;employeeStatus
+00000000;Kim Mcgee;Kim;Mcgee;employee00000000@example.com;CEO;00000;;true
+00000001;Lisa Lewis;Lisa;Lewis;employee00000001@example.com;Production;00001;00000000;true
+00000002;Bryan Villarreal;Bryan;Villarreal;employee00000002@example.com;IT Management;00002;00000000;true
+00000003;Tyler Hernandez;Tyler;Hernandez;employee00000003@example.com;Quality Management;00003;00000000;true
+00000004;Marcus Harris;Marcus;Harris;employee00000004@example.com;Marketing;00004;00000000;true
+00000005;John Davis;John;Davis;employee00000005@example.com;Selling;00005;00000000;true
+00000006;Jeffrey Lambert;Jeffrey;Lambert;employee00000006@example.com;Human Resource Management;00006;00000000;true
+00000007;Jason Williams;Jason;Williams;employee00000007@example.com;Production;00001;00000004;true
+00000008;Eric Coffey;Eric;Coffey;employee00000008@example.com;IT Management;00002;00000006;true
+00000009;Julia Adams;Julia;Adams;employee00000009@example.com;Quality Management;00003;00000006;true
+00000010;Richard Ferrell;Richard;Ferrell;employee00000010@example.com;Marketing;00004;00000003;false
+00000011;Terri Clark;Terri;Clark;employee00000011@example.com;Selling;00005;00000002;true
+00000012;Gina Hardin;Gina;Hardin;employee00000012@example.com;Human Resource Management;00006;00000004;true
+00000013;Jessica Zhang;Jessica;Zhang;employee00000013@example.com;Production;00001;00000001;true
+00000014;Lauren Mcguire;Lauren;Mcguire;employee00000014@example.com;IT Management;00002;00000006;true
+00000015;Christopher Carpenter;Christopher;Carpenter;employee00000015@example.com;Quality Management;00003;00000004;false
+00000016;Brandon Murillo;Brandon;Murillo;employee00000016@example.com;Marketing;00004;00000001;true
+00000017;Wendy Lewis;Wendy;Lewis;employee00000017@example.com;Selling;00005;00000002;true
+00000018;Stephanie Jackson;Stephanie;Jackson;employee00000018@example.com;Human Resource Management;00006;00000001;true
+00000019;Ashley Meza;Ashley;Meza;employee00000019@example.com;Production;00001;00000003;true
+00000020;Christopher Williams;Christopher;Williams;employee00000020@example.com;IT Management;00002;00000005;false
+00000021;Cody Lee;Cody;Lee;employee00000021@example.com;Quality Management;00003;00000002;true
+00000022;Christopher Steele;Christopher;Steele;employee00000022@example.com;Marketing;00004;00000001;true
+00000023;James Arnold;James;Arnold;employee00000023@example.com;Selling;00005;00000002;true
+00000024;Richard Ryan;Richard;Ryan;employee00000024@example.com;Human Resource Management;00006;00000004;true
+00000025;William Austin;William;Austin;employee00000025@example.com;Production;00001;00000001;false
+00000026;Emily Ross;Emily;Ross;employee00000026@example.com;IT Management;00002;00000005;true
+00000027;Jason Pearson;Jason;Pearson;employee00000027@example.com;Quality Management;00003;00000002;true
+00000028;Juan Mendoza;Juan;Mendoza;employee00000028@example.com;Marketing;00004;00000006;true
+00000029;Shawn Stevens;Shawn;Stevens;employee00000029@example.com;Selling;00005;00000006;true
+00000030;Sean Robinson;Sean;Robinson;employee00000030@example.com;Human Resource Management;00006;00000005;false
+00000031;Michele Meyer;Michele;Meyer;employee00000031@example.com;Production;00001;00000002;true
+00000032;Caleb Frank;Caleb;Frank;employee00000032@example.com;IT Management;00002;00000002;true
+00000033;Gail Dunn;Gail;Dunn;employee00000033@example.com;Quality Management;00003;00000001;true
+00000034;Michelle Thompson;Michelle;Thompson;employee00000034@example.com;Marketing;00004;00000001;true
+00000035;Darren Ellison;Darren;Ellison;employee00000035@example.com;Selling;00005;00000002;false
+00000036;Megan Schultz;Megan;Schultz;employee00000036@example.com;Human Resource Management;00006;00000001;true
+00000037;Steven Waters;Steven;Waters;employee00000037@example.com;Production;00001;00000006;true
+00000038;Troy Martin;Troy;Martin;employee00000038@example.com;IT Management;00002;00000006;true
+00000039;Alex Olsen;Alex;Olsen;employee00000039@example.com;Quality Management;00003;00000003;true
+00000040;Erika Hill;Erika;Hill;employee00000040@example.com;Marketing;00004;00000004;false
+00000041;Elizabeth Gregory;Elizabeth;Gregory;employee00000041@example.com;Selling;00005;00000004;true
+00000042;Amber Walker;Amber;Walker;employee00000042@example.com;Human Resource Management;00006;00000003;true
+00000043;Thomas Robinson;Thomas;Robinson;employee00000043@example.com;Production;00001;00000002;true
+00000044;Courtney Adams;Courtney;Adams;employee00000044@example.com;IT Management;00002;00000006;true
+00000045;Kari Alvarez;Kari;Alvarez;employee00000045@example.com;Quality Management;00003;00000004;false
+00000046;Daniel Miller;Daniel;Miller;employee00000046@example.com;Marketing;00004;00000006;true
+00000047;Ann James;Ann;James;employee00000047@example.com;Selling;00005;00000006;true
+00000048;Brenda Johnson;Brenda;Johnson;employee00000048@example.com;Human Resource Management;00006;00000001;true
+00000049;Natasha Barrera;Natasha;Barrera;employee00000049@example.com;Production;00001;00000003;true
+00000050;Christina Hamilton;Christina;Hamilton;employee00000050@example.com;IT Management;00002;00000002;false
+00000051;Tyler Curtis;Tyler;Curtis;employee00000051@example.com;Quality Management;00003;00000001;true
+00000052;Peter Salinas;Peter;Salinas;employee00000052@example.com;Marketing;00004;00000006;true
+00000053;Robert Brown;Robert;Brown;employee00000053@example.com;Selling;00005;00000005;true
+00000054;April Campbell;April;Campbell;employee00000054@example.com;Human Resource Management;00006;00000005;true
+00000055;William Camacho;William;Camacho;employee00000055@example.com;Production;00001;00000001;false
+00000056;Leah Obrien;Leah;Obrien;employee00000056@example.com;IT Management;00002;00000005;true
+00000057;Caleb Chen;Caleb;Chen;employee00000057@example.com;Quality Management;00003;00000002;true
+00000058;Brian Robinson;Brian;Robinson;employee00000058@example.com;Marketing;00004;00000004;true
+00000059;Lisa Howard;Lisa;Howard;employee00000059@example.com;Selling;00005;00000002;true
+00000060;Amy Williams;Amy;Williams;employee00000060@example.com;Human Resource Management;00006;00000004;false
+00000061;Jenna Bowman;Jenna;Bowman;employee00000061@example.com;Production;00001;00000003;true
+00000062;Jennifer Garcia;Jennifer;Garcia;employee00000062@example.com;IT Management;00002;00000002;true
+00000063;Amber Hendricks;Amber;Hendricks;employee00000063@example.com;Quality Management;00003;00000003;true
+00000064;Edward Farrell;Edward;Farrell;employee00000064@example.com;Marketing;00004;00000005;true
+00000065;Scott Morgan;Scott;Morgan;employee00000065@example.com;Selling;00005;00000005;false
+00000066;Deborah Charles;Deborah;Charles;employee00000066@example.com;Human Resource Management;00006;00000002;true
+00000067;Stephanie Johnson;Stephanie;Johnson;employee00000067@example.com;Production;00001;00000001;true
+00000068;Javier Ortega;Javier;Ortega;employee00000068@example.com;IT Management;00002;00000001;true
+00000069;Robert Harris;Robert;Harris;employee00000069@example.com;Quality Management;00003;00000003;true
+00000070;Steven Hartman;Steven;Hartman;employee00000070@example.com;Marketing;00004;00000001;false
+00000071;Maurice Murray;Maurice;Murray;employee00000071@example.com;Selling;00005;00000002;true
+00000072;Russell Valentine;Russell;Valentine;employee00000072@example.com;Human Resource Management;00006;00000006;true
+00000073;Kristina Lang;Kristina;Lang;employee00000073@example.com;Production;00001;00000001;true
+00000074;Sonia Fisher;Sonia;Fisher;employee00000074@example.com;IT Management;00002;00000004;true
+00000075;Erik Garcia;Erik;Garcia;employee00000075@example.com;Quality Management;00003;00000006;false
+00000076;Zachary George;Zachary;George;employee00000076@example.com;Marketing;00004;00000002;true
+00000077;Alexis Mcguire;Alexis;Mcguire;employee00000077@example.com;Selling;00005;00000001;true
+00000078;Jeremy Anderson;Jeremy;Anderson;employee00000078@example.com;Human Resource Management;00006;00000005;true
+00000079;Beth Alvarado;Beth;Alvarado;employee00000079@example.com;Production;00001;00000006;true
+00000080;Kimberly Martinez;Kimberly;Martinez;employee00000080@example.com;IT Management;00002;00000004;false
+00000081;Dave Gentry;Dave;Gentry;employee00000081@example.com;Quality Management;00003;00000005;true
+00000082;Natasha Johnson;Natasha;Johnson;employee00000082@example.com;Marketing;00004;00000006;true
+00000083;Sarah Barajas;Sarah;Barajas;employee00000083@example.com;Selling;00005;00000005;true
+00000084;Grant Hughes;Grant;Hughes;employee00000084@example.com;Human Resource Management;00006;00000004;true
+00000085;Madeline Griffith;Madeline;Griffith;employee00000085@example.com;Production;00001;00000005;false
+00000086;Heather Beck;Heather;Beck;employee00000086@example.com;IT Management;00002;00000002;true
+00000087;Jessica Black;Jessica;Black;employee00000087@example.com;Quality Management;00003;00000006;true
+00000088;Jennifer Ellison;Jennifer;Ellison;employee00000088@example.com;Marketing;00004;00000002;true
+00000089;John Clark;John;Clark;employee00000089@example.com;Selling;00005;00000004;true
+00000090;David Scott;David;Scott;employee00000090@example.com;Human Resource Management;00006;00000004;false
+00000091;Charles Sanders;Charles;Sanders;employee00000091@example.com;Production;00001;00000002;true
+00000092;Jessica Stanton;Jessica;Stanton;employee00000092@example.com;IT Management;00002;00000006;true
+00000093;Kimberly Guzman;Kimberly;Guzman;employee00000093@example.com;Quality Management;00003;00000006;true
+00000094;Andrew Wood;Andrew;Wood;employee00000094@example.com;Marketing;00004;00000002;true
+00000095;Joseph Johnson;Joseph;Johnson;employee00000095@example.com;Selling;00005;00000003;false
+00000096;Kristina Weber;Kristina;Weber;employee00000096@example.com;Human Resource Management;00006;00000004;true
+00000097;Kevin Carr;Kevin;Carr;employee00000097@example.com;Production;00001;00000003;true
+00000098;John Berry;John;Berry;employee00000098@example.com;IT Management;00002;00000004;true
+00000099;David Wood;David;Wood;employee00000099@example.com;Quality Management;00003;00000004;true
+00000100;Ashley Brady;Ashley;Brady;employee00000100@example.com;Marketing;00004;00000004;false
