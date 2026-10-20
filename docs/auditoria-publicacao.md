@@ -1,7 +1,7 @@
 # Auditoria dos arquivos para publicação
 
 Data: 20/10/2026. Branch preparada: `feature/security-review-source-only`.
-Base: `origin/main` (`18e73b7`). Nenhum push realizado.
+Base inicial da consolidação: `origin/main` (`18e73b7`). Antes de preparar a PR, foi conferida e integrada a main oficial `upstream/main` (`eb80eb4`), que já contém o merge da V2 pela PR #3. A comparação de publicação usa essa base oficial atualizada.
 
 ## Escopo mantido no commit
 
@@ -27,7 +27,7 @@ Os artefatos necessários ao build local não foram apagados. As exclusões do G
 
 A branch anterior `feature/security-review-hardening` não tinha binários na ponta, mas alcançava commits antigos com `sqljdbc4.jar`, o export UIConfig e credenciais de demonstração. Um push dessa branch transportaria esses objetos antigos, mesmo com os arquivos removidos no commit final.
 
-Por isso, a branch de publicação foi criada diretamente da main e recebeu apenas a árvore final revisada em um novo commit. Não foi feito merge da branch antiga. A branch anterior continua disponível apenas como referência local; não deve ser publicada junto com a nova branch. Evitar publicação de todas as branches/tags por `--all` ou `--mirror`.
+Por isso, a branch de publicação foi criada diretamente da main e recebeu apenas a árvore final revisada em um novo commit. Não foi feito merge da branch antiga de hardening. A main oficial atualizada foi posteriormente integrada com preservação da árvore auditada; seus objetos históricos já publicados não são novos artefatos desta feature. A branch anterior continua disponível apenas como referência local; não deve ser publicada junto com a nova branch. Evitar publicação de todas as branches/tags por `--all` ou `--mirror`.
 
 Esta consolidação não reescreve a main nem apaga conteúdo que já exista em repositórios remotos. A imagem histórica herdada da main não é um binário SailPoint e não é introduzida novamente pela feature; a árvore final não a contém.
 
@@ -41,7 +41,7 @@ Esta consolidação não reescreve a main nem apaga conteúdo que já exista em 
 ## Verificações de entrega
 
 ```bash
-python3 scripts/audit_sources.py --base origin/main
+python3 scripts/audit_sources.py --base upstream/main
 python3 scripts/validate.py
 python3 -m unittest discover -s tests -p 'test_*.py'
 git diff --cached --check
@@ -49,4 +49,4 @@ git diff --cached --check
 
 Os testes Python requerem `requirements-dev.txt`. Também foi executado Gitleaks sobre a árvore de fontes e sobre o histórico novo da branch consolidada. A auditoria verifica os arquivos staged e os objetos novos da branch, sem certificar todas as referências históricas locais.
 
-A publicação futura deve selecionar explicitamente somente `feature/security-review-source-only`. Não houve alteração do remote nem envio ao GitHub nesta tarefa.
+A publicação deve selecionar explicitamente somente `feature/security-review-source-only`. O remote `origin` permanece no fork pessoal; `upstream` aponta para o projeto oficial. O intervalo da auditoria deve usar a main oficial atualizada. A PR remove os artefatos legados da árvore, sem reescrever o histórico da main.
